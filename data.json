@@ -1,4 +1,1 @@
-[
-    {"id": 1, "author": "John Doe", "title": "First Post", "content": "This is my first post."},
-    {"id": 2, "author": "John Doe", "title": "Secomd Post", "content": "This is my second post."}
-]
+[{"id": "9c75e086-fd7c-4efa-8f62-0734a8298b13", "title": "Artikel", "author": "Richard", "content": "Branka ist die schlauste"}, {"id": "c135dedf-5cbe-421d-a4b1-08587ac18abd", "title": "no1", "author": "one", "content": "knows"}]
