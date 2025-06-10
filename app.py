@@ -2,10 +2,12 @@ from flask import Flask, render_template, request, url_for
 from werkzeug.utils import redirect
 import json
 import uuid
-
+"""Simple Blog Web-App"""
 app = Flask(__name__)
 
+
 def fetch_post_by_id(post_id):
+    """getter for the post"""
     with open("data.json", "r") as grap_it:
         posts = json.load(grap_it)
         for post in posts:
@@ -16,6 +18,7 @@ def fetch_post_by_id(post_id):
 
 @app.route('/')
 def index():
+    """GET funktion main page"""
     with open("data.json", "r") as grap_it:
         blog = json.load(grap_it)
     return render_template("index.html", posts=blog, title_blog="Was so passiert im Hause Pape-Ludwig")
@@ -23,6 +26,7 @@ def index():
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
+    """create a new post reading and writing JSON Data"""
     if request.method == "POST":
         new_post = {}
         new_post["id"] = str(uuid.uuid4())
@@ -37,8 +41,10 @@ def add():
         return redirect(url_for("index"))
     return render_template("add.html")
 
+
 @app.route("/delete/<post_id>")
 def delete(post_id):
+    """delete a post to and out of JSON"""
     with open("data.json", "r") as grap_it:
         posts = json.load(grap_it)
         post = fetch_post_by_id(post_id)
@@ -52,11 +58,11 @@ def delete(post_id):
 
 @app.route("/update/<post_id>", methods=["GET", "POST"])
 def update(post_id):
+    """Update a poste in and out a JSON Data"""
     with open("data.json", "r") as grap_it:
         posts = json.load(grap_it)
         post = fetch_post_by_id(post_id)
         index = posts.index(post)
-
     if post is None:
         return "Post not found", 404
     if request.method == "POST":
